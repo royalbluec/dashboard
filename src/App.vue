@@ -1,17 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <TotalEventCount />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TotalEventCount from './components/TotalEventCount.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      price1: 60,
+      price2: 70,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    TotalEventCount,
+  },
+};
 </script>
 
 <style>
