@@ -68,7 +68,7 @@ div {
   padding: 4px 0;
 }
 .block {
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
 .title {
   color: #1261c4;
