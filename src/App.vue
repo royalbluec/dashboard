@@ -1,10 +1,12 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <TotalEventCount />
+  <TotalReferralChart />
 </template>
 
 <script>
 import TotalEventCount from './components/TotalEventCount.vue';
+import TotalReferralChart from './components/TopReferralChart.vue';
 
 export default {
   name: 'App',
@@ -16,6 +18,7 @@ export default {
   },
   components: {
     TotalEventCount,
+    TotalReferralChart,
   },
 };
 </script>
