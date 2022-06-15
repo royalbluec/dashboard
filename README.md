@@ -1,4 +1,4 @@
-# dashboard
+# dashboard-vue
 
 ## Project setup
 ```
@@ -22,4 +22,4 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-"# dashboard" 
+"# dashboard-vue" 
