@@ -2,7 +2,7 @@
   <grid-layout
     v-model:layout="layout"
     :col-num="12"
-    :row-height="20"
+    :row-height="30"
     :is-draggable="draggable"
     :is-resizable="resizable"
     :vertical-compact="true"
@@ -61,17 +61,18 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
 }
 .vue-grid-layout {
-  max-width: 1400px;
+  max-width: 1200px;
   background: #f1f3f4;
   margin: 0 auto;
 }
 .vue-grid-item:not(.vue-grid-placeholder) {
   background: #fff;
+  box-shadow: 0 0 0.5rem #c0c0c0;
 }
 .vue-grid-item .resizing {
   opacity: 0.9;
