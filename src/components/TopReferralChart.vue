@@ -1,5 +1,8 @@
 <template>
   <div>TopReferralChart</div>
+  <div>TopReferralChart</div>
+  <div>TopReferralChart</div>
+  <div>TopReferralChart</div>
 </template>
 
 <script>
