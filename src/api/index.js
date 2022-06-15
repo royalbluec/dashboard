@@ -10,4 +10,28 @@ function getEventOneAPI() {
     .catch((err) => console.log(err));
 }
 
-export { getEventOneAPI };
+function getEventThreeAPI() {
+  return axios
+    .get('https://static.adbrix.io/front/coding-test/event_3.json')
+    .then((res) => {
+      const { rows: eventData = [] } = res.data.data;
+      const sortedData = eventData.sort((a, b) => b[1] - a[1]);
+      const resultData = sortedData.reduce((acc, cur, i) => {
+        if (i < 4) {
+          acc.push([cur[0], Number(cur[1])]);
+        } else {
+          if (acc.length === 4) {
+            acc.push(['etc', Number(cur[1])]);
+          } else {
+            acc[acc.length - 1][1] += Number(cur[1]);
+          }
+        }
+        return acc;
+      }, []);
+
+      return resultData;
+    })
+    .catch((err) => console.log(err));
+}
+
+export { getEventOneAPI, getEventThreeAPI };
