@@ -1,7 +1,4 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <!-- <TotalEventCount />
-  <TotalReferralChart /> -->
   <grid-layout
     v-model:layout="layout"
     :col-num="12"
@@ -22,31 +19,24 @@
       :key="item.i"
     >
       <component :is="item.c"></component>
-      <!-- <TotalReferralChart /> -->
-      <!-- <span class="text">{{ itemTitle(item) }}</span> -->
     </grid-item>
-    <!-- <grid-item :static="false" :x="0" :y="0" :w="6" :h="4" :i="0">1</grid-item>
-    <grid-item :static="false" :x="6" :y="0" :w="6" :h="4" :i="2">2</grid-item>
-    <grid-item :static="false" :x="0" :y="4" :w="12" :h="8" :i="3">3</grid-item>
-    <grid-item :static="false" :x="0" :y="12" :w="6" :h="8" :i="4">4</grid-item>
-    <grid-item :static="false" :x="6" :y="12" :w="6" :h="8" :i="5">5</grid-item> -->
   </grid-layout>
 </template>
 
 <script>
-// import TotalEventCount from './components/TotalEventCount.vue';
-import TotalReferralChart from './components/TopReferralChart.vue';
+import TotalEventCount from './components/TotalEventCount.vue';
+import UniqueEventCount from './components/UniqueEventCount.vue';
+import DailyActiveUserChart from './components/DailyActiveUserChart.vue';
+// import TotalReferralChart from './components/TopReferralChart.vue';
 
 export default {
   name: 'App',
   data() {
     return {
-      price1: 60,
-      price2: 70,
       layout: [
-        { x: 0, y: 0, w: 6, h: 4, i: '0', c: TotalReferralChart },
-        { x: 6, y: 0, w: 6, h: 4, i: '1' },
-        { x: 0, y: 4, w: 12, h: 8, i: '2' },
+        { x: 0, y: 0, w: 6, h: 4, i: '0', c: UniqueEventCount },
+        { x: 6, y: 0, w: 6, h: 4, i: '1', c: TotalEventCount },
+        { x: 0, y: 4, w: 12, h: 8, i: '2', c: DailyActiveUserChart },
         { x: 0, y: 12, w: 6, h: 8, i: '3' },
         { x: 6, y: 12, w: 6, h: 8, i: '4' },
       ],
@@ -55,19 +45,12 @@ export default {
       index: 0,
     };
   },
+
   components: {
-    // TotalEventCount,
-    TotalReferralChart,
+    TotalEventCount,
+    // TotalReferralChart,
   },
-  methods: {
-    itemTitle(item) {
-      let result = item.i;
-      if (item.static) {
-        result += ' - Static';
-      }
-      return result;
-    },
-  },
+  methods: {},
 };
 </script>
 

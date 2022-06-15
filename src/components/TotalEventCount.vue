@@ -1,55 +1,44 @@
 <template>
   <div>TotalEventCount</div>
+  <div>{{ uniqueEvent }}</div>
+  <div>{{ uniqueEvent.sum.toLocaleString('ko-KR') }}</div>
+
+  <div>{{ uniqueEvent.change[0] }}</div>
+  <div>{{ uniqueEvent.change[1].toLocaleString('ko-KR') }}</div>
 </template>
 
 <script>
-import axios from 'axios';
+import { getEventOneAPI } from '../api/index';
 
 export default {
   name: 'TotalEventCount',
   data() {
-    return {};
+    return {
+      uniqueEvent: {
+        sum: 0,
+        change: ['even', 0],
+      },
+    };
   },
   mounted() {
-    axios
-      .get('https://static.adbrix.io/front/coding-test/event_1.json')
-      .then((res) => {
-        const { rows: eventData } = res.data.data;
-        const sortedData = eventData.sort(
-          (a, b) => new Date(a[0]) - new Date(b[0])
-        );
-
-        let sumOfTotal = 0;
-        let sumOfUnique = 0;
-        sortedData.forEach((el) => {
-          console.log(Number(el[1]), Number(el[2]));
-          sumOfUnique += Number(el[1]);
-          sumOfTotal += Number(el[2]);
-          console.log(el);
-        });
-        console.log(sumOfUnique, sumOfTotal);
-
-        const uniqueEvent = {};
-        const totalEvent = {};
-        uniqueEvent.sum = sumOfUnique;
-        totalEvent.sum = sumOfTotal;
-        const changeOfUnique = compare(
-          Number(sortedData[sortedData.length - 1][1]),
-          Number(sortedData[sortedData.length - 2][1])
-        );
-        const changeOfTotal = compare(
-          Number(sortedData[sortedData.length - 1][2]),
-          Number(sortedData[sortedData.length - 2][2])
-        );
-        console.log(changeOfUnique, changeOfTotal);
-
-        function compare(a, b) {
-          if (a > b) return ['rise', a - b];
-          else if (a < b) return ['fall', b - a];
-          else return ['even', 0];
-        }
-      })
-      .catch((err) => console.log(err));
+    this.setUniqueEvent();
+  },
+  methods: {
+    async setUniqueEvent() {
+      const result = await getEventOneAPI();
+      result.forEach((el) => {
+        this.uniqueEvent.sum += Number(el[2]);
+      });
+      this.uniqueEvent.change = this.compare(
+        Number(result[result.length - 1][2]),
+        Number(result[result.length - 2][2])
+      );
+    },
+    compare(a, b) {
+      if (a > b) return ['rise', a - b];
+      else if (a < b) return ['fall', b - a];
+      else return ['even', 0];
+    },
   },
 };
 </script>
