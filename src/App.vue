@@ -46,16 +46,17 @@ export default {
       index: 0,
     };
   },
-
-  components: {
-    TotalEventCount,
-    // TotalReferralChart,
-  },
+  components: {},
   methods: {},
 };
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f1f3f4;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -64,19 +65,16 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 .vue-grid-layout {
-  background: #eee;
+  max-width: 1400px;
+  background: #f1f3f4;
+  margin: 0 auto;
 }
 .vue-grid-item:not(.vue-grid-placeholder) {
-  background: #ccc;
-  /* border: 1px solid black; */
+  background: #fff;
 }
 .vue-grid-item .resizing {
   opacity: 0.9;
-}
-.vue-grid-item .static {
-  background: #ccc;
 }
 .vue-grid-item .text {
   font-size: 24px;
