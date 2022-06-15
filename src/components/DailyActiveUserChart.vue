@@ -1,7 +1,10 @@
 <template lang="">
-  <div>DailyActiveUserChart</div>
-  <div>{{ eventList.length }}</div>
-  <div>{{ eventList }}</div>
+  <div class="block">
+    <div class="title">DAU</div>
+  </div>
+  <!-- <div>DailyActiveUserChart</div> -->
+  <!-- <div>{{ eventList.length }}</div> -->
+  <!-- <div>{{ eventList }}</div> -->
 </template>
 
 <script>
@@ -25,4 +28,16 @@ export default {
 };
 </script>
 
-<style lang=""></style>
+<style scoped>
+div {
+  padding: 4px 0;
+}
+.block {
+  padding: 1rem 1.5rem;
+}
+.title {
+  color: #1261c4;
+  font-size: 1rem;
+  font-weight: 600;
+}
+</style>
