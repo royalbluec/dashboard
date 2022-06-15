@@ -34,4 +34,15 @@ function getEventThreeAPI() {
     .catch((err) => console.log(err));
 }
 
-export { getEventOneAPI, getEventThreeAPI };
+function getEventFourAPI() {
+  return axios
+    .get('https://static.adbrix.io/front/coding-test/event_4.json')
+    .then((res) => {
+      const { rows: eventData = [] } = res.data.data;
+      console.log(eventData);
+
+      return eventData;
+    });
+}
+
+export { getEventOneAPI, getEventThreeAPI, getEventFourAPI };

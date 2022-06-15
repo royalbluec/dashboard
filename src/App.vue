@@ -28,6 +28,7 @@ import TotalEventCount from './components/TotalEventCount.vue';
 import UniqueEventCount from './components/UniqueEventCount.vue';
 import DailyActiveUserChart from './components/DailyActiveUserChart.vue';
 import TotalReferralChart from './components/TopReferralChart.vue';
+import TopReferralTable from './components/TopReferralTable.vue';
 
 export default {
   name: 'App',
@@ -38,7 +39,7 @@ export default {
         { x: 6, y: 0, w: 6, h: 4, i: '1', c: TotalEventCount },
         { x: 0, y: 4, w: 12, h: 8, i: '2', c: DailyActiveUserChart },
         { x: 0, y: 12, w: 6, h: 8, i: '3', c: TotalReferralChart },
-        { x: 6, y: 12, w: 6, h: 8, i: '4' },
+        { x: 6, y: 12, w: 6, h: 8, i: '4', c: TopReferralTable },
       ],
       draggable: true,
       resizable: true,
