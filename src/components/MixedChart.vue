@@ -108,5 +108,10 @@ export default {
       },
     };
   },
+  mounted() {
+    console.log(this.chartData);
+    this.chartData.datasets[0].data = [10, 10, 10, 10, 10, 10];
+    console.log(this.width);
+  },
 };
 </script>

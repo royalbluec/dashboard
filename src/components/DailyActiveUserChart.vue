@@ -1,17 +1,17 @@
 <template lang="">
   <div class="block">
     <div class="title">DAU</div>
+    <MixedChart />
   </div>
-  <!-- <div>DailyActiveUserChart</div> -->
-  <!-- <div>{{ eventList.length }}</div> -->
-  <!-- <div>{{ eventList }}</div> -->
 </template>
 
 <script>
+import MixedChart from './MixedChart.vue';
 import { getEventOneAPI } from '../api/index';
 
 export default {
   name: 'DailyActiveUserChart',
+  components: { MixedChart },
   data() {
     return {
       eventList: [],

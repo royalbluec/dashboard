@@ -24,22 +24,30 @@
 </template>
 
 <script>
-import TotalEventCount from './components/TotalEventCount.vue';
+import { shallowRef } from 'vue';
+
 import UniqueEventCount from './components/UniqueEventCount.vue';
+import TotalEventCount from './components/TotalEventCount.vue';
 import DailyActiveUserChart from './components/DailyActiveUserChart.vue';
 import TotalReferralChart from './components/TopReferralChart.vue';
 import TopReferralTable from './components/TopReferralTable.vue';
+
+const uniqueEventCount = shallowRef(UniqueEventCount);
+const totalEventCount = shallowRef(TotalEventCount);
+const dailyActiveUserChart = shallowRef(DailyActiveUserChart);
+const totalReferralChart = shallowRef(TotalReferralChart);
+const topReferralTable = shallowRef(TopReferralTable);
 
 export default {
   name: 'App',
   data() {
     return {
       layout: [
-        { x: 0, y: 0, w: 6, h: 4, i: '0', c: UniqueEventCount },
-        { x: 6, y: 0, w: 6, h: 4, i: '1', c: TotalEventCount },
-        { x: 0, y: 4, w: 12, h: 8, i: '2', c: DailyActiveUserChart },
-        { x: 0, y: 12, w: 6, h: 8, i: '3', c: TotalReferralChart },
-        { x: 6, y: 12, w: 6, h: 8, i: '4', c: TopReferralTable },
+        { x: 0, y: 0, w: 6, h: 4, i: '0', c: uniqueEventCount },
+        { x: 6, y: 0, w: 6, h: 4, i: '1', c: totalEventCount },
+        { x: 0, y: 4, w: 12, h: 8, i: '2', c: dailyActiveUserChart },
+        { x: 0, y: 12, w: 6, h: 8, i: '3', c: totalReferralChart },
+        { x: 6, y: 12, w: 6, h: 8, i: '4', c: topReferralTable },
       ],
       draggable: true,
       resizable: true,
