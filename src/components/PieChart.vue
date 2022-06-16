@@ -67,6 +67,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    eventList: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -93,6 +97,10 @@ export default {
         maintainAspectRatio: false,
       },
     };
+  },
+  beforeUpdate() {
+    this.chartData.labels = this.eventList.map((el) => el[0]);
+    this.chartData.datasets[0].data = this.eventList.map((el) => el[1]);
   },
 };
 </script>

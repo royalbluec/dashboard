@@ -1,10 +1,8 @@
 <template>
   <div class="block">
     <div class="title">Top Referral</div>
-    <div><PieChart width="200" /></div>
+    <div><PieChart height="200" :eventList="eventList" /></div>
   </div>
-  <!-- <div>TopReferralChart</div>
-  <div>{{ eventList }}</div> -->
 </template>
 
 <script>

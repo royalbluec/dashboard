@@ -112,10 +112,6 @@ export default {
       },
     };
   },
-  mounted() {
-    console.log(this.chartData);
-    this.chartData.datasets[0].data = [10, 10, 10, 10, 10, 10];
-  },
   beforeUpdate() {
     this.chartData.labels = this.eventList.map((el) => el[0]);
     this.chartData.datasets[0].data = this.eventList.map((el) => el[1]);
