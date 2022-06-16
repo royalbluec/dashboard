@@ -64,7 +64,6 @@ export default {
       ],
       draggable: false,
       resizable: false,
-      index: 0,
     };
   },
   components: {},
@@ -76,11 +75,38 @@ export default {
     cancelEdit() {
       this.draggable = false;
       this.resizable = false;
+      const layoutData = this.getStorage();
+      for (let i = 0; i < layoutData.length; i++) {
+        this.layout[i].x = layoutData[i].x;
+        this.layout[i].y = layoutData[i].y;
+        this.layout[i].w = layoutData[i].w;
+        this.layout[i].h = layoutData[i].h;
+      }
     },
     completeEdit() {
       this.draggable = false;
       this.resizable = false;
+      this.setStorage();
     },
+    setStorage() {
+      localStorage.setItem('layout', JSON.stringify(this.layout));
+    },
+    getStorage() {
+      return JSON.parse(localStorage.getItem('layout'));
+    },
+  },
+  mounted() {
+    const layoutData = this.getStorage();
+    if (!layoutData) {
+      this.setStorage();
+    } else {
+      for (let i = 0; i < layoutData.length; i++) {
+        this.layout[i].x = layoutData[i].x;
+        this.layout[i].y = layoutData[i].y;
+        this.layout[i].w = layoutData[i].w;
+        this.layout[i].h = layoutData[i].h;
+      }
+    }
   },
 };
 </script>
