@@ -1,4 +1,17 @@
 <template>
+  <div class="btn__block" v-if="draggable === false && resizable === false">
+    <button type="button" class="btn btn-primary" @click="startEdit">
+      편집
+    </button>
+  </div>
+  <div class="btn__block" v-else>
+    <button type="button" class="btn btn-outline-primary" @click="cancelEdit">
+      편집 취소
+    </button>
+    <button type="button" class="btn btn-primary" @click="completeEdit">
+      편집 완료
+    </button>
+  </div>
   <grid-layout
     v-model:layout="layout"
     :col-num="12"
@@ -50,12 +63,25 @@ export default {
         { x: 6, y: 12, w: 6, h: 8, i: '4', c: topReferralTable },
       ],
       draggable: false,
-      resizable: true,
+      resizable: false,
       index: 0,
     };
   },
   components: {},
-  methods: {},
+  methods: {
+    startEdit() {
+      this.draggable = true;
+      this.resizable = true;
+    },
+    cancelEdit() {
+      this.draggable = false;
+      this.resizable = false;
+    },
+    completeEdit() {
+      this.draggable = false;
+      this.resizable = false;
+    },
+  },
 };
 </script>
 
@@ -71,7 +97,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
 }
 .vue-grid-layout {
   max-width: 1200px;
@@ -121,5 +146,23 @@ body {
   background-origin: content-box;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.btn__block {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1200px;
+  padding: 1rem 0;
+  margin: 0 auto;
+}
+.btn {
+  width: 8rem;
+  margin-left: 1rem;
+}
+.btn:focus,
+.btn:active,
+.btn:hover {
+  box-shadow: none !important;
+  outline: 0;
 }
 </style>
