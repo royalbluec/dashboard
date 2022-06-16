@@ -82,15 +82,7 @@ export default {
   data() {
     return {
       chartData: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
+        labels: [],
         datasets: [
           {
             label: 'Unique Event Count',
@@ -142,6 +134,11 @@ export default {
             ticks: {
               color: '#6bb2a8',
             },
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
           },
         },
       },

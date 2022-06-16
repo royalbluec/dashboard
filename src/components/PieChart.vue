@@ -75,19 +75,18 @@ export default {
   data() {
     return {
       chartData: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
+        labels: [],
         datasets: [
           {
             label: 'Pie data',
-            data: [40, 39, 10, 40, 39, 80, 40],
+            backgroundColor: [
+              '#4ea397',
+              '#22c3aa',
+              '#7bd9a5',
+              '#d0648a',
+              '#f58db2',
+            ],
+            data: [],
             type: 'pie',
           },
         ],
@@ -95,6 +94,11 @@ export default {
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
       },
     };
   },
