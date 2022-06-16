@@ -39,7 +39,7 @@ function getEventFourAPI() {
     .get('https://static.adbrix.io/front/coding-test/event_4.json')
     .then((res) => {
       const { rows: eventData = [] } = res.data.data;
-      console.log(eventData);
+      // console.log(eventData);
 
       return eventData;
     });

@@ -1,12 +1,16 @@
 <template>
   <div class="block">
     <div class="title">Top Referral</div>
+    <div><MixedChart /></div>
+    <div><PieChart /></div>
   </div>
   <!-- <div>TopReferralChart</div>
   <div>{{ eventList }}</div> -->
 </template>
 
 <script>
+import MixedChart from './MixedChart.vue';
+import PieChart from './PieChart.vue';
 import { getEventThreeAPI } from '../api/index';
 
 export default {
@@ -24,6 +28,7 @@ export default {
       this.eventList = await getEventThreeAPI();
     },
   },
+  components: { MixedChart, PieChart },
 };
 </script>
 
