@@ -1,7 +1,9 @@
 <template lang="">
   <div class="block">
     <div class="title">Top Referral</div>
-    <TableChart :eventList="eventList" />
+    <div class="table-responsive">
+      <TableChart :eventList="eventList" />
+    </div>
   </div>
 </template>
 
@@ -39,5 +41,8 @@ div {
   color: #4fa2eb;
   font-size: 1rem;
   font-weight: 600;
+}
+.table-responsive {
+  max-height: 200px;
 }
 </style>
