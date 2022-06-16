@@ -63,8 +63,8 @@ export default {
       default: 400,
     },
     cssClasses: {
-      default: '',
       type: String,
+      default: '',
     },
     styles: {
       type: Object,
@@ -73,6 +73,10 @@ export default {
     plugins: {
       type: Object,
       default: () => {},
+    },
+    eventList: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -89,15 +93,15 @@ export default {
         ],
         datasets: [
           {
-            label: 'Line data',
+            label: 'Unique Event Count',
             // backgroundColor: '#f87979',
-            data: [40, 39, 10, 40, 39, 80, 40],
+            data: [],
             type: 'line',
           },
           {
-            label: 'Bar data',
+            label: 'Total Event Count',
             backgroundColor: '#f87979',
-            data: [66, 35, 20, 20, 30, 40, 50],
+            data: [],
             type: 'bar',
           },
         ],
@@ -111,7 +115,11 @@ export default {
   mounted() {
     console.log(this.chartData);
     this.chartData.datasets[0].data = [10, 10, 10, 10, 10, 10];
-    console.log(this.width);
+  },
+  beforeUpdate() {
+    this.chartData.labels = this.eventList.map((el) => el[0]);
+    this.chartData.datasets[0].data = this.eventList.map((el) => el[1]);
+    this.chartData.datasets[1].data = this.eventList.map((el) => el[2]);
   },
 };
 </script>

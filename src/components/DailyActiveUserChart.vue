@@ -1,7 +1,7 @@
 <template lang="">
   <div class="block">
     <div class="title">DAU</div>
-    <MixedChart />
+    <MixedChart :eventList="eventList" height="200" />
   </div>
 </template>
 
