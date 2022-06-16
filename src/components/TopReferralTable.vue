@@ -1,11 +1,12 @@
 <template lang="">
   <div class="block">
     <div class="title">Top Referral</div>
+    <TableChart :eventList="eventList" />
   </div>
-  <!-- <div>{{ eventList }}</div> -->
 </template>
 
 <script>
+import TableChart from './TableChart.vue';
 import { getEventFourAPI } from '../api/index';
 
 export default {
@@ -18,6 +19,7 @@ export default {
   mounted() {
     this.setEventList();
   },
+  components: { TableChart },
   methods: {
     async setEventList() {
       this.eventList = await getEventFourAPI();

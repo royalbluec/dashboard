@@ -49,7 +49,7 @@ export default {
         { x: 0, y: 12, w: 6, h: 8, i: '3', c: totalReferralChart },
         { x: 6, y: 12, w: 6, h: 8, i: '4', c: topReferralTable },
       ],
-      draggable: true,
+      draggable: false,
       resizable: true,
       index: 0,
     };
