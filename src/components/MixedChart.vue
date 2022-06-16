@@ -94,21 +94,56 @@ export default {
         datasets: [
           {
             label: 'Unique Event Count',
-            // backgroundColor: '#f87979',
+            backgroundColor: '#6bb2a8',
             data: [],
             type: 'line',
+            yAxisID: 'right-y-axis',
           },
           {
             label: 'Total Event Count',
-            backgroundColor: '#f87979',
+            backgroundColor: '#22c3aa',
             data: [],
             type: 'bar',
+            yAxisID: 'left-y-axis',
           },
         ],
       },
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: {
+          'left-y-axis': {
+            type: 'linear',
+            position: 'left',
+            ticks: {
+              color: '#22c3aa',
+              callback: function (value) {
+                var ranges = [
+                  { divider: 1e6, suffix: 'M' },
+                  { divider: 1e3, suffix: 'k' },
+                ];
+                function formatNumber(n) {
+                  for (var i = 0; i < ranges.length; i++) {
+                    if (n >= ranges[i].divider) {
+                      return (
+                        (n / ranges[i].divider).toString() + ranges[i].suffix
+                      );
+                    }
+                  }
+                  return n;
+                }
+                return formatNumber(value);
+              },
+            },
+          },
+          'right-y-axis': {
+            type: 'linear',
+            position: 'right',
+            ticks: {
+              color: '#6bb2a8',
+            },
+          },
+        },
       },
     };
   },

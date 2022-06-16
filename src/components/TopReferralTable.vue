@@ -34,7 +34,7 @@ div {
   padding: 1rem 1.5rem;
 }
 .title {
-  color: #1261c4;
+  color: #4fa2eb;
   font-size: 1rem;
   font-weight: 600;
 }
