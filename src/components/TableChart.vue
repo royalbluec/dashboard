@@ -4,12 +4,10 @@
       <tr>
         <th scope="col">GroupBy</th>
         <th scope="col">Metrics</th>
-        <th scope="col">Temp</th>
       </tr>
       <tr class="table__subtitle">
         <th scope="col">Country (IP) > Region (IP) > City (IP)</th>
         <th scope="col">sum(Unique Event Count)</th>
-        <th scope="col">depth</th>
       </tr>
     </thead>
     <tbody>
@@ -74,6 +72,7 @@ export default {
               id: el[2],
               cnt: Number(el[3]),
               depth: 3,
+              isOpened: false,
               child: [],
             });
           }
@@ -84,6 +83,7 @@ export default {
             id: el[1],
             cnt: Number(el[3]),
             depth: 2,
+            isOpened: false,
             child: [],
           });
 
@@ -93,13 +93,20 @@ export default {
             id: el[2],
             cnt: Number(el[3]),
             depth: 3,
+            isOpened: false,
             child: [],
           });
         }
       } else {
         // depth: 1
         // temp
-        temp.push({ id: el[0], cnt: Number(el[3]), depth: 1, child: [] });
+        temp.push({
+          id: el[0],
+          cnt: Number(el[3]),
+          depth: 1,
+          isOpened: false,
+          child: [],
+        });
 
         let len = temp.length - 1;
         // depth: 2
@@ -107,6 +114,7 @@ export default {
           id: el[1],
           cnt: Number(el[3]),
           depth: 2,
+          isOpened: false,
           child: [],
         });
 
@@ -115,6 +123,7 @@ export default {
           id: el[2],
           cnt: Number(el[3]),
           depth: 3,
+          isOpened: false,
           child: [],
         });
       }
