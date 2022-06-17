@@ -1,55 +1,55 @@
-<template>
+<template lang="">
   <div class="block">
-    <div class="title">접속횟수</div>
+    <div class="title">접속유저</div>
     <div class="subtitle">
       <span class="summary">SUM</span>
-      <span>Total Event Count</span>
+      <span>Unique Event Count</span>
     </div>
-    <div class="number">{{ totalEvent.sum.toLocaleString('ko-KR') }}</div>
+    <div class="number">{{ uniqueEvent.sum.toLocaleString('ko-KR') }}</div>
     <div>
-      <span v-if="totalEvent.change[0] === 'rise'" class="rise">
+      <span v-if="uniqueEvent.change[0] === 'rise'" class="rise">
         <font-awesome-icon icon="fa-solid fa-caret-up" />
         <span class="change">{{
-          totalEvent.change[1].toLocaleString('ko-KR')
+          uniqueEvent.change[1].toLocaleString('ko-KR')
         }}</span>
       </span>
-      <span v-if="totalEvent.change[0] === 'fall'" class="fall">
+      <span v-if="uniqueEvent.change[0] === 'fall'" class="fall">
         <font-awesome-icon icon="fa-solid fa-caret-down" />
         <span class="change">{{
-          totalEvent.change[1].toLocaleString('ko-KR')
+          uniqueEvent.change[1].toLocaleString('ko-KR')
         }}</span>
       </span>
-      <span v-if="totalEvent.change[0] === 'even'" class="even">
-        <span>{{ totalEvent.change[1].toLocaleString('ko-KR') }}</span>
+      <span v-if="uniqueEvent.change[0] === 'even'" class="even">
+        <span>{{ uniqueEvent.change[1].toLocaleString('ko-KR') }}</span>
       </span>
     </div>
   </div>
 </template>
 
 <script>
-import { getEventOneAPI } from '../api/index';
+import { getEventOneAPI } from '../../api/index';
 
 export default {
-  name: 'TotalEventCount',
+  name: 'UniqueEventCount',
   data() {
     return {
-      idx: 2,
-      totalEvent: {
+      idx: 1,
+      uniqueEvent: {
         sum: 0,
         change: ['even', 0],
       },
     };
   },
   mounted() {
-    this.setTotalEvent();
+    this.setUniqueEvent();
   },
   methods: {
-    async setTotalEvent() {
+    async setUniqueEvent() {
       const result = await getEventOneAPI();
       result.forEach((el) => {
-        this.totalEvent.sum += Number(el[this.idx]);
+        this.uniqueEvent.sum += Number(el[this.idx]);
       });
-      this.totalEvent.change = this.compare(
+      this.uniqueEvent.change = this.compare(
         Number(result[result.length - 1][this.idx]),
         Number(result[result.length - 2][this.idx])
       );

@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import PieChart from './PieChart.vue';
-import { getEventThreeAPI } from '../api/index';
+import PieChart from '../chart/PieChart.vue';
+import { getEventThreeAPI } from '../../api/index';
 
 export default {
   name: 'TopReferralChart',

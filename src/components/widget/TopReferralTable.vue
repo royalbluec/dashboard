@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import TableChart from './TableChart.vue';
-import { getEventFourAPI } from '../api/index';
+import TableChart from '../chart/TableChart.vue';
+import { getEventFourAPI } from '../../api/index';
 
 export default {
   name: 'TopReferralTable',

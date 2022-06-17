@@ -41,11 +41,11 @@
 <script>
 import { shallowRef } from 'vue';
 
-import UniqueEventCount from './components/UniqueEventCount.vue';
-import TotalEventCount from './components/TotalEventCount.vue';
-import DailyActiveUserChart from './components/DailyActiveUserChart.vue';
-import TotalReferralChart from './components/TopReferralChart.vue';
-import TopReferralTable from './components/TopReferralTable.vue';
+import UniqueEventCount from './components/widget/UniqueEventCount.vue';
+import TotalEventCount from './components/widget/TotalEventCount.vue';
+import DailyActiveUserChart from './components/widget/DailyActiveUserChart.vue';
+import TotalReferralChart from './components/widget/TopReferralChart.vue';
+import TopReferralTable from './components/widget/TopReferralTable.vue';
 
 const uniqueEventCount = shallowRef(UniqueEventCount);
 const totalEventCount = shallowRef(TotalEventCount);

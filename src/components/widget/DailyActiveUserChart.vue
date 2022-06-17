@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import MixedChart from './MixedChart.vue';
-import { getEventOneAPI } from '../api/index';
+import MixedChart from '../chart/MixedChart.vue';
+import { getEventOneAPI } from '../../api/index';
 
 export default {
   name: 'DailyActiveUserChart',
