@@ -140,7 +140,7 @@ export default {
   computed: {
     myStyles() {
       return {
-        height: `${this.chartHeight - 50}px`,
+        height: `${this.chartHeight - 70}px`,
         position: 'relative',
       };
     },

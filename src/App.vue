@@ -231,7 +231,7 @@ body {
 }
 .btn {
   width: 8rem;
-  margin-left: 1rem;
+  margin: 0 0.5rem;
 }
 .btn:focus,
 .btn:active,
