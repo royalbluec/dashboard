@@ -39,7 +39,7 @@
         </span>
         <span class="table__id">(empty)</span>
       </td>
-      <td>{{ item.cnt }}</td>
+      <td>{{ item.cnt.toLocaleString('ko-KR') }}</td>
     </tr>
     <TableChartRow v-if="item.isOpened === true" :tableChartList="item.child" />
   </template>

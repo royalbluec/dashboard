@@ -114,6 +114,19 @@ export default {
       resizable: false,
     };
   },
+  mounted() {
+    const layoutData = this.getStorage();
+    if (!layoutData) {
+      this.setStorage();
+    } else {
+      for (let i = 0; i < layoutData.length; i++) {
+        this.layout[i].x = layoutData[i].x;
+        this.layout[i].y = layoutData[i].y;
+        this.layout[i].w = layoutData[i].w;
+        this.layout[i].h = layoutData[i].h;
+      }
+    }
+  },
   components: {},
   methods: {
     startEdit() {
@@ -143,19 +156,6 @@ export default {
       return JSON.parse(localStorage.getItem('layout'));
     },
   },
-  mounted() {
-    const layoutData = this.getStorage();
-    if (!layoutData) {
-      this.setStorage();
-    } else {
-      for (let i = 0; i < layoutData.length; i++) {
-        this.layout[i].x = layoutData[i].x;
-        this.layout[i].y = layoutData[i].y;
-        this.layout[i].w = layoutData[i].w;
-        this.layout[i].h = layoutData[i].h;
-      }
-    }
-  },
 };
 </script>
 
@@ -171,6 +171,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
 .vue-grid-layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -221,13 +222,6 @@ body {
   cursor: pointer;
 }
 
-.btn__block {
-  display: flex;
-  justify-content: flex-end;
-  max-width: 1200px;
-  padding: 1rem 0;
-  margin: 0 auto;
-}
 .btn {
   width: 8rem;
   margin: 0 0.5rem;
@@ -237,5 +231,13 @@ body {
 .btn:hover {
   box-shadow: none !important;
   outline: 0;
+}
+
+.btn__block {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1200px;
+  padding: 1rem 0;
+  margin: 0 auto;
 }
 </style>

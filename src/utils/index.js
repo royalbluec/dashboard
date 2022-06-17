@@ -38,4 +38,16 @@ function compareReverseCount(a, b) {
   return 0;
 }
 
-export { compareIP, compareReverseIP, compareCount, compareReverseCount };
+function compareWidgetChange(a, b) {
+  if (a > b) return ['rise', a - b];
+  else if (a < b) return ['fall', a - b];
+  else return ['even', 0];
+}
+
+export {
+  compareIP,
+  compareReverseIP,
+  compareCount,
+  compareReverseCount,
+  compareWidgetChange,
+};

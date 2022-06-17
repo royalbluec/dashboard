@@ -1,6 +1,6 @@
 <template>
-  <div class="block">
-    <div class="title">Top Referral</div>
+  <div class="widget__block">
+    <div class="widget__title">Top Referral</div>
     <PieChart :eventList="eventList" :chartHeight="chartHeight" />
   </div>
 </template>
@@ -45,10 +45,10 @@ export default {
 div {
   padding: 4px 0;
 }
-.block {
+.widget__block {
   padding: 1rem 1.5rem;
 }
-.title {
+.widget__title {
   color: #4fa2eb;
   font-size: 1rem;
   font-weight: 600;

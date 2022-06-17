@@ -98,12 +98,12 @@ export default {
             ticks: {
               color: '#22c3aa',
               callback: function (value) {
-                var ranges = [
+                const ranges = [
                   { divider: 1e6, suffix: 'M' },
                   { divider: 1e3, suffix: 'k' },
                 ];
                 function formatNumber(n) {
-                  for (var i = 0; i < ranges.length; i++) {
+                  for (let i = 0; i < ranges.length; i++) {
                     if (n >= ranges[i].divider) {
                       return (
                         (n / ranges[i].divider).toString() + ranges[i].suffix
@@ -140,8 +140,8 @@ export default {
   computed: {
     myStyles() {
       return {
-        height: `${this.chartHeight - 70}px`,
         position: 'relative',
+        height: `${this.chartHeight - 70}px`,
       };
     },
   },

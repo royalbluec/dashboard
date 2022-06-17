@@ -1,21 +1,23 @@
 <template lang="">
-  <div class="block">
-    <div class="title">접속유저</div>
-    <div class="subtitle">
-      <span class="summary">SUM</span>
+  <div class="widget__block">
+    <div class="widget__title">접속유저</div>
+    <div class="widget__subtitle">
+      <span class="widget__summary">SUM</span>
       <span>Unique Event Count</span>
     </div>
-    <div class="number">{{ uniqueEvent.sum.toLocaleString('ko-KR') }}</div>
+    <div class="widget__result">
+      {{ uniqueEvent.sum.toLocaleString('ko-KR') }}
+    </div>
     <div>
       <span v-if="uniqueEvent.change[0] === 'rise'" class="rise">
         <font-awesome-icon icon="fa-solid fa-caret-up" />
-        <span class="change">{{
+        <span class="widget__change">{{
           uniqueEvent.change[1].toLocaleString('ko-KR')
         }}</span>
       </span>
       <span v-if="uniqueEvent.change[0] === 'fall'" class="fall">
         <font-awesome-icon icon="fa-solid fa-caret-down" />
-        <span class="change">{{
+        <span class="widget__change">{{
           uniqueEvent.change[1].toLocaleString('ko-KR')
         }}</span>
       </span>
@@ -28,6 +30,7 @@
 
 <script>
 import { getEventOneAPI } from '../../api/index';
+import { compareWidgetChange } from '../../utils/index';
 
 export default {
   name: 'UniqueEventCount',
@@ -49,15 +52,10 @@ export default {
       result.forEach((el) => {
         this.uniqueEvent.sum += Number(el[this.idx]);
       });
-      this.uniqueEvent.change = this.compare(
+      this.uniqueEvent.change = compareWidgetChange(
         Number(result[result.length - 1][this.idx]),
         Number(result[result.length - 2][this.idx])
       );
-    },
-    compare(a, b) {
-      if (a > b) return ['rise', a - b];
-      else if (a < b) return ['fall', a - b];
-      else return ['even', 0];
     },
   },
 };
@@ -70,32 +68,34 @@ export default {
 div {
   padding: 4px 0;
 }
-.block {
+
+.widget__block {
   padding: 1rem 1.5rem;
 }
-.title {
+.widget__title {
   color: #4fa2eb;
   font-size: 1rem;
   font-weight: 600;
 }
-.subtitle {
+.widget__subtitle {
   color: #a9a9a9;
   font-size: 0.8rem;
   font-weight: 400;
 }
-.number {
+.widget__result {
   font-size: 2rem;
   font-weight: 600;
 }
-.summary {
+.widget__summary {
   background: #f5f5f5;
   padding: 2px 4px;
   border-radius: 4px;
   margin-right: 4px;
 }
-.change {
+.widget__change {
   padding-left: 4px;
 }
+
 .rise {
   color: #c84a31;
 }

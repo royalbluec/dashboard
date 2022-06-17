@@ -1,7 +1,7 @@
 <template lang="">
-  <div class="block">
-    <div class="block__header">
-      <span class="title">DAU</span>
+  <div class="widget__block">
+    <div class="widget__header">
+      <span class="widget__title">DAU</span>
       <div class="btn-group">
         <button
           type="button"
@@ -93,15 +93,15 @@ button {
   margin: 0;
 }
 
-.block {
+.widget__block {
   padding: 1rem 1.5rem;
 }
-.block__header {
+.widget__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.title {
+.widget__title {
   color: #4fa2eb;
   font-size: 1rem;
   font-weight: 600;

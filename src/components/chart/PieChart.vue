@@ -55,7 +55,6 @@ export default {
       type: Array,
       default: () => [],
     },
-
     chartHeight: {
       type: Number,
       default: 400,
