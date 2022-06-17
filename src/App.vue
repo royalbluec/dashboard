@@ -33,7 +33,7 @@
       :i="item.i"
       :key="item.i"
     >
-      <component :is="item.c"></component>
+      <component :is="item.c" :itemHeight="item.h"></component>
     </grid-item>
   </grid-layout>
 </template>
@@ -80,9 +80,9 @@ export default {
         },
         {
           x: 0,
-          y: 4,
+          y: 5,
           w: 12,
-          h: 8,
+          h: 9,
           minW: 5,
           minH: 7,
           i: '2',
@@ -90,7 +90,7 @@ export default {
         },
         {
           x: 0,
-          y: 12,
+          y: 14,
           w: 6,
           h: 7,
           minW: 5,
@@ -100,7 +100,7 @@ export default {
         },
         {
           x: 6,
-          y: 12,
+          y: 14,
           w: 6,
           h: 7,
           minW: 5,
@@ -109,6 +109,7 @@ export default {
           c: topReferralTable,
         },
       ],
+      itemHeight: [0, 0, 0, 0, 0],
       draggable: false,
       resizable: false,
     };

@@ -1,7 +1,7 @@
 <template lang="">
   <div class="block">
     <div class="title">DAU</div>
-    <MixedChart :eventList="eventList" height="200" />
+    <MixedChart :eventList="eventList" :chartHeight="chartHeight" />
   </div>
 </template>
 
@@ -12,13 +12,23 @@ import { getEventOneAPI } from '../api/index';
 export default {
   name: 'DailyActiveUserChart',
   components: { MixedChart },
+  props: {
+    itemHeight: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       eventList: [],
+      chartHeight: 0,
     };
   },
   mounted() {
     this.setList();
+  },
+  beforeUpdate() {
+    this.chartHeight = this.itemHeight * 40 - 10;
   },
   methods: {
     async setList() {
@@ -29,6 +39,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  min-height: 100%;
+}
 div {
   padding: 4px 0;
 }

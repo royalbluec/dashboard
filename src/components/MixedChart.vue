@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <Line
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    />
-  </div>
+  <Line
+    :chart-options="chartOptions"
+    :chart-data="chartData"
+    :chart-id="chartId"
+    :dataset-id-key="datasetIdKey"
+    :plugins="plugins"
+    :css-classes="cssClasses"
+    :styles="myStyles"
+  />
 </template>
 
 <script>
@@ -54,21 +50,9 @@ export default {
       type: String,
       default: 'label',
     },
-    width: {
-      type: Number,
-      default: 400,
-    },
-    height: {
-      type: Number,
-      default: 400,
-    },
     cssClasses: {
       type: String,
       default: '',
-    },
-    styles: {
-      type: Object,
-      default: () => {},
     },
     plugins: {
       type: Object,
@@ -77,6 +61,10 @@ export default {
     eventList: {
       type: Array,
       default: () => [],
+    },
+    chartHeight: {
+      type: Number,
+      default: 400,
     },
   },
   data() {
@@ -148,6 +136,14 @@ export default {
     this.chartData.labels = this.eventList.map((el) => el[0]);
     this.chartData.datasets[0].data = this.eventList.map((el) => el[1]);
     this.chartData.datasets[1].data = this.eventList.map((el) => el[2]);
+  },
+  computed: {
+    myStyles() {
+      return {
+        height: `${this.chartHeight - 50}px`,
+        position: 'relative',
+      };
+    },
   },
 };
 </script>

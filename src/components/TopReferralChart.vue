@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <div class="title">Top Referral</div>
-    <div><PieChart height="200" :eventList="eventList" /></div>
+    <PieChart :eventList="eventList" :chartHeight="chartHeight" />
   </div>
 </template>
 
@@ -11,13 +11,23 @@ import { getEventThreeAPI } from '../api/index';
 
 export default {
   name: 'TopReferralChart',
+  props: {
+    itemHeight: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       eventList: [],
+      chartHeight: 0,
     };
   },
   mounted() {
     this.setEventList();
+  },
+  beforeUpdate() {
+    this.chartHeight = this.itemHeight * 40 - 10;
   },
   methods: {
     async setEventList() {
@@ -29,6 +39,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  min-height: 100%;
+}
 div {
   padding: 4px 0;
 }
