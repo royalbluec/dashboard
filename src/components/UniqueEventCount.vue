@@ -64,6 +64,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  white-space: nowrap;
+}
 div {
   padding: 4px 0;
 }

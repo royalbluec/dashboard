@@ -28,6 +28,8 @@
       :y="item.y"
       :w="item.w"
       :h="item.h"
+      :min-w="item.minW"
+      :min-h="item.minH"
       :i="item.i"
       :key="item.i"
     >
@@ -56,11 +58,56 @@ export default {
   data() {
     return {
       layout: [
-        { x: 0, y: 0, w: 6, h: 4, i: '0', c: uniqueEventCount },
-        { x: 6, y: 0, w: 6, h: 4, i: '1', c: totalEventCount },
-        { x: 0, y: 4, w: 12, h: 8, i: '2', c: dailyActiveUserChart },
-        { x: 0, y: 12, w: 6, h: 8, i: '3', c: totalReferralChart },
-        { x: 6, y: 12, w: 6, h: 8, i: '4', c: topReferralTable },
+        {
+          x: 0,
+          y: 0,
+          w: 6,
+          h: 5,
+          minW: 3,
+          minH: 5,
+          i: '0',
+          c: uniqueEventCount,
+        },
+        {
+          x: 6,
+          y: 0,
+          w: 6,
+          h: 5,
+          minW: 3,
+          minH: 5,
+          i: '1',
+          c: totalEventCount,
+        },
+        {
+          x: 0,
+          y: 4,
+          w: 12,
+          h: 8,
+          minW: 5,
+          minH: 7,
+          i: '2',
+          c: dailyActiveUserChart,
+        },
+        {
+          x: 0,
+          y: 12,
+          w: 6,
+          h: 7,
+          minW: 5,
+          minH: 7,
+          i: '3',
+          c: totalReferralChart,
+        },
+        {
+          x: 6,
+          y: 12,
+          w: 6,
+          h: 7,
+          minW: 5,
+          minH: 7,
+          i: '4',
+          c: topReferralTable,
+        },
       ],
       draggable: false,
       resizable: false,
