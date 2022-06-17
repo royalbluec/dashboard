@@ -9,19 +9,19 @@
         <th scope="col">
           <span>Country (IP) > Region (IP) > City (IP)</span>
           <font-awesome-icon
-            class="table__head__icon"
+            class="table__icon"
             v-if="isSortDownIP === 'down'"
             icon="fa-solid fa-arrow-down"
             @click="setIsSortUpIP"
           />
           <font-awesome-icon
-            class="table__head__icon"
+            class="table__icon"
             v-else-if="isSortDownIP === 'up'"
             icon="fa-solid fa-arrow-up"
             @click="setIsSortDownIP"
           />
           <font-awesome-icon
-            class="table__head__icon"
+            class="table__icon"
             v-else
             icon="fa-solid fa-arrow-down-short-wide"
             @click="setIsSortUpIP"
@@ -30,19 +30,19 @@
         <th scope="col">
           <span>sum(Unique Event Count)</span>
           <font-awesome-icon
-            class="table__head__icon"
+            class="table__icon"
             v-if="isSortDownCount === 'down'"
             icon="fa-solid fa-arrow-down"
             @click="setIsSortUpCount"
           />
           <font-awesome-icon
-            class="table__head__icon"
+            class="table__icon"
             v-else-if="isSortDownCount === 'up'"
             icon="fa-solid fa-arrow-up"
             @click="setIsSortDownCount"
           />
           <font-awesome-icon
-            class="table__head__icon"
+            class="table__icon"
             v-else
             icon="fa-solid fa-arrow-down-short-wide"
             @click="setIsSortUpCount"
@@ -58,6 +58,12 @@
 
 <script>
 import TableChartRow from './TableChartRow';
+import {
+  compareIP,
+  compareReverseIP,
+  compareCount,
+  compareReverseCount,
+} from '../../utils/index';
 
 export default {
   name: 'TableChart',
@@ -69,12 +75,7 @@ export default {
   },
   data() {
     return {
-      a: 6,
       tableChartList: [],
-      data: {
-        name: 'kukaro',
-        age: 26,
-      },
       isSortDownCount: 'down',
       isSortDownIP: '',
     };
@@ -187,23 +188,17 @@ export default {
     sortDownCount(list) {
       const temp = list;
       // depth: 1
-      temp.sort((a, b) => {
-        return b.cnt - a.cnt;
-      });
+      temp.sort(compareReverseCount);
 
       // depth: 2
       for (let i = 0; i < temp.length; i++) {
-        temp[i].child.sort((a, b) => {
-          return b.cnt - a.cnt;
-        });
+        temp[i].child.sort(compareReverseCount);
       }
 
       // depth: 3
       for (let i = 0; i < temp.length; i++) {
         for (let j = 0; j < temp[i].child.length; j++) {
-          temp[i].child[j].child.sort((a, b) => {
-            return b.cnt - a.cnt;
-          });
+          temp[i].child[j].child.sort(compareReverseCount);
         }
       }
 
@@ -212,23 +207,17 @@ export default {
     sortUpCount(list) {
       const temp = list;
       // depth: 1
-      temp.sort((a, b) => {
-        return a.cnt - b.cnt;
-      });
+      temp.sort(compareCount);
 
       // depth: 2
       for (let i = 0; i < temp.length; i++) {
-        temp[i].child.sort((a, b) => {
-          return a.cnt - b.cnt;
-        });
+        temp[i].child.sort(compareCount);
       }
 
       // depth: 3
       for (let i = 0; i < temp.length; i++) {
         for (let j = 0; j < temp[i].child.length; j++) {
-          temp[i].child[j].child.sort((a, b) => {
-            return a.cnt - b.cnt;
-          });
+          temp[i].child[j].child.sort(compareCount);
         }
       }
 
@@ -237,17 +226,17 @@ export default {
     sortDownIP(list) {
       const temp = list;
       // depth: 1
-      temp.sort(this.compareStringR);
+      temp.sort(compareReverseIP);
 
       // depth: 2
       for (let i = 0; i < temp.length; i++) {
-        temp[i].child.sort(this.compareStringR);
+        temp[i].child.sort(compareReverseIP);
       }
 
       // depth: 3
       for (let i = 0; i < temp.length; i++) {
         for (let j = 0; j < temp[i].child.length; j++) {
-          temp[i].child[j].child.sort(this.compareStringR);
+          temp[i].child[j].child.sort(compareReverseIP);
         }
       }
 
@@ -256,17 +245,17 @@ export default {
     sortUpIP(list) {
       const temp = list;
       // depth: 1
-      temp.sort(this.compareString);
+      temp.sort(compareIP);
 
       // depth: 2
       for (let i = 0; i < temp.length; i++) {
-        temp[i].child.sort(this.compareString);
+        temp[i].child.sort(compareIP);
       }
 
       // depth: 3
       for (let i = 0; i < temp.length; i++) {
         for (let j = 0; j < temp[i].child.length; j++) {
-          temp[i].child[j].child.sort(this.compareString);
+          temp[i].child[j].child.sort(compareIP);
         }
       }
 
@@ -288,24 +277,6 @@ export default {
       this.isSortDownCount = '';
       this.isSortDownIP = 'up';
     },
-    compareString(a, b) {
-      if (a.id.toLowerCase() < b.id.toLowerCase()) {
-        return -1;
-      }
-      if (a.id.toLowerCase() > b.id.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    },
-    compareStringR(a, b) {
-      if (a.id.toLowerCase() < b.id.toLowerCase()) {
-        return 1;
-      }
-      if (a.id.toLowerCase() > b.id.toLowerCase()) {
-        return -1;
-      }
-      return 0;
-    },
   },
   components: { TableChartRow },
 };
@@ -315,7 +286,7 @@ export default {
 .table__subtitle {
   font-size: 0.7rem;
 }
-.table__head__icon {
+.table__icon {
   float: right;
 }
 </style>

@@ -169,13 +169,12 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
 }
 .vue-grid-layout {
   max-width: 1200px;
-  background: #f1f3f4;
   margin: 0 auto;
+  background: #f1f3f4;
 }
 .vue-grid-item:not(.vue-grid-placeholder) {
   background: #fff;
