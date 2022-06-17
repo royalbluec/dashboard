@@ -6,8 +6,48 @@
         <th scope="col">Metrics</th>
       </tr>
       <tr class="table__subtitle">
-        <th scope="col">Country (IP) > Region (IP) > City (IP)</th>
-        <th scope="col">sum(Unique Event Count)</th>
+        <th scope="col">
+          <span>Country (IP) > Region (IP) > City (IP)</span>
+          <font-awesome-icon
+            class="table__head__icon"
+            v-if="isSortDownIP === 'down'"
+            icon="fa-solid fa-arrow-down"
+            @click="setIsSortUpIP"
+          />
+          <font-awesome-icon
+            class="table__head__icon"
+            v-else-if="isSortDownIP === 'up'"
+            icon="fa-solid fa-arrow-up"
+            @click="setIsSortDownIP"
+          />
+          <font-awesome-icon
+            class="table__head__icon"
+            v-else
+            icon="fa-solid fa-arrow-down-short-wide"
+            @click="setIsSortUpIP"
+          />
+        </th>
+        <th scope="col">
+          <span>sum(Unique Event Count)</span>
+          <font-awesome-icon
+            class="table__head__icon"
+            v-if="isSortDownCount === 'down'"
+            icon="fa-solid fa-arrow-down"
+            @click="setIsSortUpCount"
+          />
+          <font-awesome-icon
+            class="table__head__icon"
+            v-else-if="isSortDownCount === 'up'"
+            icon="fa-solid fa-arrow-up"
+            @click="setIsSortDownCount"
+          />
+          <font-awesome-icon
+            class="table__head__icon"
+            v-else
+            icon="fa-solid fa-arrow-down-short-wide"
+            @click="setIsSortUpCount"
+          />
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +75,8 @@ export default {
         name: 'kukaro',
         age: 26,
       },
+      isSortDownCount: 'down',
+      isSortDownIP: '',
     };
   },
   beforeUpdate() {
@@ -129,28 +171,141 @@ export default {
       }
     });
 
-    // depth: 1
-    temp.sort((a, b) => {
-      return b.cnt - a.cnt;
-    });
-
-    // depth: 2
-    for (let i = 0; i < temp.length; i++) {
-      temp[i].child.sort((a, b) => {
-        return b.cnt - a.cnt;
-      });
+    if (this.isSortDownCount === 'down') {
+      this.sortDownCount(temp);
+    } else if (this.isSortDownCount === 'up') {
+      this.sortUpCount(temp);
     }
 
-    // depth: 3
-    for (let i = 0; i < temp.length; i++) {
-      for (let j = 0; j < temp[i].child.length; j++) {
-        temp[i].child[j].child.sort((a, b) => {
+    if (this.isSortDownIP === 'down') {
+      this.sortDownIP(temp);
+    } else if (this.isSortDownIP === 'up') {
+      this.sortUpIP(temp);
+    }
+  },
+  methods: {
+    sortDownCount(list) {
+      const temp = list;
+      // depth: 1
+      temp.sort((a, b) => {
+        return b.cnt - a.cnt;
+      });
+
+      // depth: 2
+      for (let i = 0; i < temp.length; i++) {
+        temp[i].child.sort((a, b) => {
           return b.cnt - a.cnt;
         });
       }
-    }
 
-    this.tableChartList = temp;
+      // depth: 3
+      for (let i = 0; i < temp.length; i++) {
+        for (let j = 0; j < temp[i].child.length; j++) {
+          temp[i].child[j].child.sort((a, b) => {
+            return b.cnt - a.cnt;
+          });
+        }
+      }
+
+      this.tableChartList = temp;
+    },
+    sortUpCount(list) {
+      const temp = list;
+      // depth: 1
+      temp.sort((a, b) => {
+        return a.cnt - b.cnt;
+      });
+
+      // depth: 2
+      for (let i = 0; i < temp.length; i++) {
+        temp[i].child.sort((a, b) => {
+          return a.cnt - b.cnt;
+        });
+      }
+
+      // depth: 3
+      for (let i = 0; i < temp.length; i++) {
+        for (let j = 0; j < temp[i].child.length; j++) {
+          temp[i].child[j].child.sort((a, b) => {
+            return a.cnt - b.cnt;
+          });
+        }
+      }
+
+      this.tableChartList = temp;
+    },
+    sortDownIP(list) {
+      const temp = list;
+      // depth: 1
+      temp.sort(this.compareStringR);
+
+      // depth: 2
+      for (let i = 0; i < temp.length; i++) {
+        temp[i].child.sort(this.compareStringR);
+      }
+
+      // depth: 3
+      for (let i = 0; i < temp.length; i++) {
+        for (let j = 0; j < temp[i].child.length; j++) {
+          temp[i].child[j].child.sort(this.compareStringR);
+        }
+      }
+
+      this.tableChartList = temp;
+    },
+    sortUpIP(list) {
+      const temp = list;
+      // depth: 1
+      temp.sort(this.compareString);
+
+      // depth: 2
+      for (let i = 0; i < temp.length; i++) {
+        temp[i].child.sort(this.compareString);
+      }
+
+      // depth: 3
+      for (let i = 0; i < temp.length; i++) {
+        for (let j = 0; j < temp[i].child.length; j++) {
+          temp[i].child[j].child.sort(this.compareString);
+        }
+      }
+
+      this.tableChartList = temp;
+    },
+    setIsSortDownCount() {
+      this.isSortDownCount = 'down';
+      this.isSortDownIP = '';
+    },
+    setIsSortUpCount() {
+      this.isSortDownCount = 'up';
+      this.isSortDownIP = '';
+    },
+    setIsSortDownIP() {
+      this.isSortDownCount = '';
+      this.isSortDownIP = 'down';
+    },
+    setIsSortUpIP() {
+      this.isSortDownCount = '';
+      this.isSortDownIP = 'up';
+    },
+    compareString(a, b) {
+      if (a.id.toLowerCase() < b.id.toLowerCase()) {
+        return -1;
+      }
+      if (a.id.toLowerCase() > b.id.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    },
+    compareStringR(a, b) {
+      if (a.id.toLowerCase() < b.id.toLowerCase()) {
+        return 1;
+      }
+      if (a.id.toLowerCase() > b.id.toLowerCase()) {
+        return -1;
+      }
+      return 0;
+    },
   },
   components: { TableChartRow },
 };
@@ -159,5 +314,8 @@ export default {
 <style scoped>
 .table__subtitle {
   font-size: 0.7rem;
+}
+.table__head__icon {
+  float: right;
 }
 </style>

@@ -8,13 +8,24 @@ import {
   faCaretUp,
   faCaretDown,
   faCircleCheck,
+  faArrowDown,
+  faArrowUp,
+  faArrowDownShortWide,
 } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck as faCircleCheckRegular } from '@fortawesome/free-regular-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 
-library.add(faCaretUp, faCaretDown, faCircleCheck, faCircleCheckRegular);
+library.add(
+  faCaretUp,
+  faCaretDown,
+  faCircleCheck,
+  faArrowDown,
+  faArrowUp,
+  faArrowDownShortWide,
+  faCircleCheckRegular
+);
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
